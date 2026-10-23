@@ -1,17 +1,22 @@
 FROM python:3.13-slim
 
-COPY --from=ghcr.io/astral-sh/uv:0.13.5 /uv /bin/uv
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR /app
 
-# Install locked runtime dependencies separately for Docker layer caching.
-COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-dev --no-install-project --no-cache
+# Cache dependency installation separately from application code.
+COPY requirements.txt ./
+RUN python -m pip install --no-cache-dir -r requirements.txt
 
+RUN useradd --no-create-home --uid 1000 appuser
 COPY main.py .
+USER appuser
 
-# Use the environment created by uv without syncing at container startup.
-ENV PATH="/app/.venv/bin:$PATH"
+ENV HOME=/tmp \
+    TMPDIR=/tmp \
+    XDG_CACHE_HOME=/tmp/.cache
 
 EXPOSE 8080
 

@@ -1,11 +1,5 @@
-.git
-.venv
-.env
-.env.*
-!.env.example
-__pycache__
-*.pyc
-.pytest_cache
-.codex
-.agents
-.aws
+# Only these files are needed to build the runtime image.
+**
+!Dockerfile
+!main.py
+!requirements.txt
