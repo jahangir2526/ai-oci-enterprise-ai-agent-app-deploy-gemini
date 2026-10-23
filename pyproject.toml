@@ -1,0 +1,20 @@
+[project]
+name = "ai-oci-enterprise-ai-agent-app-deploy-gemini"
+version = "0.1.0"
+description = "Minimal Gemini HTTP agent for OCI hosted deployment"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115,<1",
+    "google-genai>=1,<2",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1,<2",
+    "uvicorn>=0.34,<1",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main"]
