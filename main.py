@@ -14,11 +14,7 @@ load_dotenv(override=True)
 logger = logging.getLogger(__name__)
 
 SYSTEM_INSTRUCTION = (
-    "Always answer in a single short, concise sentence on exactly one line, "
-    "regardless of the user's query or requested format. "
-    "Never include line breaks, lists, headings, or code blocks. "
-    "If asked for a detailed or multiline response, summarize the answer "
-    "in one short sentence instead."
+    "Always answer with less than 10 words without line breaks, lists, headings, or code blocks"
 )
 
 

@@ -64,8 +64,11 @@ Interactive API documentation: <http://localhost:8080/docs>.
 ## 2. Docker | Build the container
 
 ```bash
-docker buildx build --platform linux/amd64 --load -t oci-gemini-agent:v1 .
+docker buildx build --platform linux/amd64 --provenance=false --sbom=false \
+  --load -t oci-gemini-agent:v1 .
 ```
+
+For this test image, `--provenance=false --sbom=false` disables build attestations that can otherwise appear as extra digest-only entries in OCIR. Existing entries remain after rebuilding; they are not additional application versions. See [Docker build attestations](https://docs.docker.com/build/metadata/attestations/).
 
 Python is included in the base image; no OS package installation or separate Python download is needed. Docker installs dependencies using `pip install --no-cache-dir -r requirements.txt`. `uv` is not used; `uvicorn` serves FastAPI. Installation happens at build time, and Docker reuses the dependency layer when only `main.py` changes.
 
