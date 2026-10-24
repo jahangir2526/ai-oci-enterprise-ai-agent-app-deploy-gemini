@@ -128,8 +128,8 @@ For Ashburn, use `iad.ocir.io`. Example image path: `iad.ocir.io/<tenancy-namesp
 
 ## 5. Deploy and invoke on OCI
 
-1. Create Generative AI application (if note exists)
-2. Go to Configuration tab and add Environment variable for `GEMINI_API_KEY` and optionally `GEMINI_MODEL` 
+1. Create Generative AI application (if note exists), Make sure you have followed Step 2
+2. Go to Configuration tab and add Environment variable for `GEMINI_API_KEY` and optionally `GEMINI_MODEL` **[Note : Adding  `GEMINI_API_KEY` to environment variable is crucial; the deployment will not work otherwise]**
 3. Go to Deployment and create a deployment using the pushed OCIR image.
 4. Allow outbound HTTPS to `generativelanguage.googleapis.com`, use port `8080`, and confirm `/ready` and `/health` succeed.
 5. Wait for the deployment to become active. Copy the Console-provided application endpoint and append `/chat`: the final path is **`/actions/invoke/chat`**.

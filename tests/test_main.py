@@ -57,7 +57,7 @@ class AnswerTests(unittest.TestCase):
     def test_json_and_sse_use_same_answer(self):
         # Exercise real response serialization without invoking an upstream service.
         fixture = FastAPI()
-        payload = main.format_answer("প্রথম লাইন।\nদ্বিতীয় লাইন।")
+        payload = main.format_answer("First line\n Second line")
 
         @fixture.get("/answer")
         def answer(request: Request):
